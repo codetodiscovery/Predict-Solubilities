@@ -5,13 +5,15 @@ Code to Discovery\*
 
 Email: <codetodiscovery@gmail.com>
 
+Youtube: https://www.youtube.com/channel/UC6k1epfxt3gPVdQhE8gI1tQ 
+
 Saturday, 9 March 2024
 
 Abstract:
 
 Understanding and predicting solubility is crucial across various scientific disciplines, influencing drug development, environmental risk assessments, and materials engineering. This study explores the application of machine learning (ML) models to predict the aqueous solubility of organic molecules. The dataset, comprising 1144 molecules, undergoes thorough pre-processing, feature reduction, and analysis. Machine learning models, including Random Forest (RF) and Extra Tree (ET), are evaluated, and their performances are compared. The study emphasizes the importance of interpretability and explains the impact of top descriptors on solubility predictions. Hyperparameter tuning and explainability techniques contribute to optimizing model performance and enhancing transparency. The results showcase the effectiveness of ML in predicting solubilities while addressing challenges related to complexity and interpretability.
 
-Keywords: solubility; machine learning; random forest; Mordred; 
+Keywords: solubility; machine learning; random forest; Mordred
 
 
 # <a name="_toc160919826"></a>**Introduction** 

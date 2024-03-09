@@ -52,18 +52,11 @@ The logarithmic solubility measurements exhibit a range from –11.6 for decachl
 
 To unravel the key features influencing the measured solubilities of organic compounds, a systematic approach was employed. Initially, the correlation of each descriptor with the target solubility values was calculated, allowing for the identification of four descriptors highly correlated with the solubility. The correlation matrix, as illustrated in Fig. 2B, showcases these influential descriptors, namely FilterItLogS, PEOE\_VSA6, RNCG, and ABC. This step was crucial in pinpointing the descriptors most strongly associated with the solubility variations observed in the dataset.
 
-
-
-
-
-
-
-
-
 The subsequent analysis delved deeper into the relationships between these identified descriptors and the measured solubilities through scatter plots, depicted in Fig. 2C. This visual exploration aids in understanding the nature and direction of correlations, providing valuable insights into how specific molecular characteristics contribute to the observed solubility trends.Within the array of descriptors employed in this comprehensive study, FilterItLogS emerged as the most influential, showcasing a robust correlation with a r value of 0.86. In close pursuit, PEOE\_VSA6 and RNCG demonstrated significant correlations, with respective r values of -0.71 and 0.63. Notably, ABC exhibited the least correlation among the quartet of descriptors, registering an r value of -0.59.
-![](Fig_2.png)
 
 Delving deeper into the relationships revealed by scatter plot analysis, a positive correlation surfaced between FilterItLogS and RNCG, indicating a tendency for these descriptors to vary in tandem. Conversely, PEOE\_VSA6 and ABC exhibited a negative correlation, suggesting an inverse relationship between these descriptors. This nuanced exploration provides a more intricate understanding of the interplay among the descriptors, shedding light on their respective contributions to the solubility patterns observed in the organic molecules under scrutiny.
+![](Fig_2.png)
+
 ## <a name="_toc160919831"></a>***Model selection***
 To initiate the model screening process, the dataset underwent a random split, with 80% allocated to training and 20% to the test set. Model performance was assessed using the coefficient of determination (R<sup>2</sup>) providing insights into accuracy and predictive power.<sup>18</sup> A comparative analysis of various linear and non-linear ML algorithms, including multiple linear regression (MLR), support vector machine (SVM), random forest (RF), and extra tree (ET), was conducted through cross-validation.<sup>19</sup>
 
@@ -85,13 +78,8 @@ Table 2. Cross-validation metrics of different models screened in this study.
 ## <a name="_toc160919832"></a>***Feature reduction and model evaluation***
 While the RF and ET models, trained on 915 molecules with 281 descriptors, demonstrated remarkable accuracy in predicting log solubilities for organic molecules in the external test set, the extensive use of descriptors in this study results in a "black box" quality, hindering interpretability.<sup>21-24</sup> In a pursuit to simplify and elucidate the Quantitative Structure-Property Relationship (QSPR) study and identify the most influential features shaping the model, a feature importance algorithm based on RF was employed. This algorithm quantifies the importance of each feature used in model training.
 
-
-
-
-
-
-
 ![](Fig_3.png)
+
 Eight key features emerged as the most relevant for model training, as identified by the mentioned algorithm: FilterItLogS, Lipinski, SIC0, RNCG, RPCG, ATS0Z, AATS0i, and AETA\_eta (Fig. 3A). To assess the performance of RF model with a reduced number of features, it was trained using only these top 8 descriptors. This was achieved by incrementally adding descriptors, and the corresponding metrics were recorded for comparative analysis. In Fig. 3B, the graph illustrates the train and test R<sup>2</sup> scores with the sequential addition of descriptors for the RF model.
 
 Notably, utilizing a single most contributing feature, FilterItLogS, yielded a high train R<sup>2</sup> score but a mediocre test R<sup>2</sup> score, indicative of an overfitting scenario. The sequential addition of Lipinski had a marginal impact on the scores, but the inclusion of SIC0 led to a substantial enhancement in the test scores. Subsequent addition of descriptors such as RNCG, RPCG, ATS0Z, and AATS0i contributed to a gradual increment in the test score until it plateaued with the addition of the last descriptor, AATS0i. An observed slight decrease in the test R<sup>2</sup> score was noted with the addition of the 8<sup>th</sup> descriptor, AETA\_eta.
@@ -101,12 +89,13 @@ These results highlight the optimal nature of the top 7 descriptors for achievin
 Table 3. Metrics for RF and ET models trained on different number of descriptors
 
 <table><tr><th colspan="1" valign="top"><b>Model</b></th><th colspan="1" valign="top"><b>No. of Features</b></th><th colspan="1" valign="top"><b>Cross-val R<sup>2</sup> score</b></th><th colspan="1" valign="top"><b>Train R<sup>2</sup> score</b></th><th colspan="1" valign="top"><b>Test R<sup>2</sup> score</b></th></tr>
-<tr><td colspan="1" rowspan="2" valign="top"><b>RF</b></td><td colspan="1" valign="top"><b>281</b></td><td colspan="1" valign="top">0\.886</td><td colspan="1" valign="top">0\.984</td><td colspan="1" valign="top">0.868</td></tr>
-<tr><td colspan="1" valign="top"><b>7</b></td><td colspan="1" valign="top">0\.877</td><td colspan="1" valign="top">0\.983</td><td colspan="1" valign="top">0\.865</td></tr>
-<tr><td colspan="1" rowspan="2" valign="top"><b>ET</b></td><td colspan="1" valign="top"><b>281</b></td><td colspan="1" valign="top">0\.905</td><td colspan="1" valign="top">1\.0</td><td colspan="1" valign="top">0\.895</td></tr>
-<tr><td colspan="1" valign="top"><b>7</b></td><td colspan="1" valign="top">0\.882</td><td colspan="1" valign="top">0\.999</td><td colspan="1" valign="top">0\.865</td></tr>
+<tr><td colspan="1" rowspan="2" valign="top"><b>RF</b></td><td colspan="1" valign="top"><b>281</b></td><td colspan="1" valign="top">0.886</td><td colspan="1" valign="top">0.984</td><td colspan="1" valign="top">0.868</td></tr>
+<tr><td colspan="1" valign="top"><b>7</b></td><td colspan="1" valign="top">0.877</td><td colspan="1" valign="top">0.983</td><td colspan="1" valign="top">0.865</td></tr>
+<tr><td colspan="1" rowspan="2" valign="top"><b>ET</b></td><td colspan="1" valign="top"><b>281</b></td><td colspan="1" valign="top">0.905</td><td colspan="1" valign="top">1.0</td><td colspan="1" valign="top">0.895</td></tr>
+<tr><td colspan="1" valign="top"><b>7</b></td><td colspan="1" valign="top">0.882</td><td colspan="1" valign="top">0.999</td><td colspan="1" valign="top">0.865</td></tr>
 </table>
-## <a name="_toc160919833"></a>***Hyperparameter tuning***
+
+## <a name="_toc160919834"></a>***Hyperparameter tuning***
 Hyperparameter tuning is a critical step in optimizing the performance of ML models, and GridSearchCV is a valuable tool for accomplishing this task, particularly when applied to RF algorithms. GridSearchCV systematically explores a predefined hyperparameter grid, searching for the combination that yields the best model performance based on specified evaluation metrics. For RF, essential hyperparameters include the number of trees in the forest, the maximum depth of each tree, and the minimum number of samples required to split an internal node. By exhaustively testing various parameter combinations, GridSearchCV helps identify the optimal configuration, leading to a RF model that generalizes well to new data and achieves superior predictive capabilities. This systematic approach streamlines the hyperparameter tuning process, enabling data scientists to find the best model parameters efficiently and enhance the overall effectiveness of RF in solving diverse ML problems. The exploration of various parameter values through GridSearchCV resulted in the identification of final parameters, as outlined in Table 4. Remarkably, the adoption of these new parameters contributed to a reduction in overfitting, with training R<sup>2</sup> scores decreasing from 0.983 to 0.962. Meanwhile, only a marginal decline in test R<sup>2</sup> scores was noted, moving from 0.865 to 0.854. 
 
 Table 4. Parameters and their values screened using GridSearchCV
@@ -121,11 +110,9 @@ Table 4. Parameters and their values screened using GridSearchCV
 
 ## <a name="_toc160919834"></a>***Predictions***
 
+![](Fig_4.png)
 
-
-
-
-![](Fig_4.png)Fig. 4A represents the regression and residual plots for RF model trained using top 7 descriptors. Thiophenol (A), pinacolone (B) and fenfuram (C) were predicted with high accuracy with absolute error zero or close to zero, while some complex molecules such as dimecron (D), sucrose (E) and etofenprox (F) were predicted with relatively high absolute error of 2.38, 2.45, and 2.81, respectively (Fig. 4B). The variation in prediction errors for different molecules in the test set can be attributed to several factors. Molecules with complex structures or unique features such as the ones discussed above are more challenging for the RF model to accurately predict probably because the training data does not cover similar structures well, and the model may struggle to generalize to such cases. The other reason could be that the RF model is slightly overfitting the training data; therefore the possibility of performing poorly on some molecules cannot be disregarded. 
+Fig. 4A represents the regression and residual plots for RF model trained using top 7 descriptors. Thiophenol (A), pinacolone (B) and fenfuram (C) were predicted with high accuracy with absolute error zero or close to zero, while some complex molecules such as dimecron (D), sucrose (E) and etofenprox (F) were predicted with relatively high absolute error of 2.38, 2.45, and 2.81, respectively (Fig. 4B). The variation in prediction errors for different molecules in the test set can be attributed to several factors. Molecules with complex structures or unique features such as the ones discussed above are more challenging for the RF model to accurately predict probably because the training data does not cover similar structures well, and the model may struggle to generalize to such cases. The other reason could be that the RF model is slightly overfitting the training data; therefore the possibility of performing poorly on some molecules cannot be disregarded. 
 ## <a name="_toc160919835"></a>***Explainability***
 The benefits offered by these ML algorithms, when compared to simpler and more interpretable linear models like MLR and PLS, come at the expense of increased complexity. This complexity introduces uncertainty regarding their functioning and decision-making capabilities. Scientists, who prioritize results that align with their cognitive abilities and knowledge gained from experimentation, are hesitant to adopt "black box" models for real-world applications due to their ambiguous nature. Consequently, explainable artificial intelligence (XAI), a burgeoning field, has gained significant popularity in the scientific community. XAI focuses on approaches that simplify ML models without sacrificing accuracy, resulting in inherently interpretable models.
 

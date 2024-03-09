@@ -7,8 +7,6 @@ Email: <codetodiscovery@gmail.com>
 
 Saturday, 9 March 2024
 
-**A Machine Learning Approach for Predicting Aqueous Solubility of Organic Molecules**
-
 Abstract:
 
 Understanding and predicting solubility is crucial across various scientific disciplines, influencing drug development, environmental risk assessments, and materials engineering. This study explores the application of machine learning (ML) models to predict the aqueous solubility of organic molecules. The dataset, comprising 1144 molecules, undergoes thorough pre-processing, feature reduction, and analysis. Machine learning models, including Random Forest (RF) and Extra Tree (ET), are evaluated, and their performances are compared. The study emphasizes the importance of interpretability and explains the impact of top descriptors on solubility predictions. Hyperparameter tuning and explainability techniques contribute to optimizing model performance and enhancing transparency. The results showcase the effectiveness of ML in predicting solubilities while addressing challenges related to complexity and interpretability.
@@ -62,7 +60,8 @@ To unravel the key features influencing the measured solubilities of organic com
 
 
 
-The subsequent analysis delved deeper into the relationships between these identified descriptors and the measured solubilities through scatter plots, depicted in Fig. 2C. This visual exploration aids in understanding the nature and direction of correlations, providing valuable insights into how specific molecular ![](Fig_2.png)characteristics contribute to the observed solubility trends.Within the array of descriptors employed in this comprehensive study, FilterItLogS emerged as the most influential, showcasing a robust correlation with a r value of 0.86. In close pursuit, PEOE\_VSA6 and RNCG demonstrated significant correlations, with respective r values of -0.71 and 0.63. Notably, ABC exhibited the least correlation among the quartet of descriptors, registering an r value of -0.59.
+The subsequent analysis delved deeper into the relationships between these identified descriptors and the measured solubilities through scatter plots, depicted in Fig. 2C. This visual exploration aids in understanding the nature and direction of correlations, providing valuable insights into how specific molecular characteristics contribute to the observed solubility trends.Within the array of descriptors employed in this comprehensive study, FilterItLogS emerged as the most influential, showcasing a robust correlation with a r value of 0.86. In close pursuit, PEOE\_VSA6 and RNCG demonstrated significant correlations, with respective r values of -0.71 and 0.63. Notably, ABC exhibited the least correlation among the quartet of descriptors, registering an r value of -0.59.
+![](Fig_2.png)
 
 Delving deeper into the relationships revealed by scatter plot analysis, a positive correlation surfaced between FilterItLogS and RNCG, indicating a tendency for these descriptors to vary in tandem. Conversely, PEOE\_VSA6 and ABC exhibited a negative correlation, suggesting an inverse relationship between these descriptors. This nuanced exploration provides a more intricate understanding of the interplay among the descriptors, shedding light on their respective contributions to the solubility patterns observed in the organic molecules under scrutiny.
 ## <a name="_toc160919831"></a>***Model selection***
@@ -92,7 +91,8 @@ While the RF and ET models, trained on 915 molecules with 281 descriptors, demon
 
 
 
-![](Fig_3.png)Eight key features emerged as the most relevant for model training, as identified by the mentioned algorithm: FilterItLogS, Lipinski, SIC0, RNCG, RPCG, ATS0Z, AATS0i, and AETA\_eta (Fig. 3A). To assess the performance of RF model with a reduced number of features, it was trained using only these top 8 descriptors. This was achieved by incrementally adding descriptors, and the corresponding metrics were recorded for comparative analysis. In Fig. 3B, the graph illustrates the train and test R<sup>2</sup> scores with the sequential addition of descriptors for the RF model.
+![](Fig_3.png)
+Eight key features emerged as the most relevant for model training, as identified by the mentioned algorithm: FilterItLogS, Lipinski, SIC0, RNCG, RPCG, ATS0Z, AATS0i, and AETA\_eta (Fig. 3A). To assess the performance of RF model with a reduced number of features, it was trained using only these top 8 descriptors. This was achieved by incrementally adding descriptors, and the corresponding metrics were recorded for comparative analysis. In Fig. 3B, the graph illustrates the train and test R<sup>2</sup> scores with the sequential addition of descriptors for the RF model.
 
 Notably, utilizing a single most contributing feature, FilterItLogS, yielded a high train R<sup>2</sup> score but a mediocre test R<sup>2</sup> score, indicative of an overfitting scenario. The sequential addition of Lipinski had a marginal impact on the scores, but the inclusion of SIC0 led to a substantial enhancement in the test scores. Subsequent addition of descriptors such as RNCG, RPCG, ATS0Z, and AATS0i contributed to a gradual increment in the test score until it plateaued with the addition of the last descriptor, AATS0i. An observed slight decrease in the test R<sup>2</sup> score was noted with the addition of the 8<sup>th</sup> descriptor, AETA\_eta.
 
@@ -101,7 +101,7 @@ These results highlight the optimal nature of the top 7 descriptors for achievin
 Table 3. Metrics for RF and ET models trained on different number of descriptors
 
 <table><tr><th colspan="1" valign="top"><b>Model</b></th><th colspan="1" valign="top"><b>No. of Features</b></th><th colspan="1" valign="top"><b>Cross-val R<sup>2</sup> score</b></th><th colspan="1" valign="top"><b>Train R<sup>2</sup> score</b></th><th colspan="1" valign="top"><b>Test R<sup>2</sup> score</b></th></tr>
-<tr><td colspan="1" rowspan="2" valign="top"><b>RF</b></td><td colspan="1" valign="top"><b>281</b></td><td colspan="1" valign="top">0\.886</td><td colspan="1" valign="top">0\.984</td><td colspan="1" valign="top">0\.868</td></tr>
+<tr><td colspan="1" rowspan="2" valign="top"><b>RF</b></td><td colspan="1" valign="top"><b>281</b></td><td colspan="1" valign="top">0\.886</td><td colspan="1" valign="top">0\.984</td><td colspan="1" valign="top">0.868</td></tr>
 <tr><td colspan="1" valign="top"><b>7</b></td><td colspan="1" valign="top">0\.877</td><td colspan="1" valign="top">0\.983</td><td colspan="1" valign="top">0\.865</td></tr>
 <tr><td colspan="1" rowspan="2" valign="top"><b>ET</b></td><td colspan="1" valign="top"><b>281</b></td><td colspan="1" valign="top">0\.905</td><td colspan="1" valign="top">1\.0</td><td colspan="1" valign="top">0\.895</td></tr>
 <tr><td colspan="1" valign="top"><b>7</b></td><td colspan="1" valign="top">0\.882</td><td colspan="1" valign="top">0\.999</td><td colspan="1" valign="top">0\.865</td></tr>
